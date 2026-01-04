@@ -1,0 +1,82 @@
+.calendar-event {
+  background: var(--surface);
+  border-left: 3px solid var(--primary-color);
+  border-radius: 4px;
+  padding: 12px;
+  margin-bottom: 8px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.calendar-event:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Compact mode for grid view */
+.calendar-event.compact {
+  padding: 4px 6px;
+  margin-bottom: 0;
+  height: 100%;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 2px;
+  background: #e3f2fd;
+  border-left: 3px solid var(--primary-color);
+  font-size: 0.75rem;
+}
+
+.calendar-event.compact:hover {
+  transform: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 20;
+}
+
+.event-time {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.calendar-event.compact .event-time {
+  font-size: 0.7rem;
+  color: #1976d2;
+  margin-bottom: 0;
+}
+
+.event-time .all-day {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.event-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.calendar-event.compact .event-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1565c0;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.event-description {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+.event-location {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-top: 6px;
+}
+

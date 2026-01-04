@@ -1,0 +1,183 @@
+.dinner-schedule {
+  background: var(--surface);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+
+.dinner-schedule-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.dinner-schedule-header h2 {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+}
+
+.dinner-table-section {
+  margin-bottom: 30px;
+}
+
+.dinner-table-section:last-child {
+  margin-bottom: 0;
+}
+
+.table-title {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.dinner-table-container {
+  overflow-x: auto;
+}
+
+.dinner-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  table-layout: fixed;
+}
+
+.dinner-table thead {
+  background: var(--background);
+}
+
+.dinner-table th {
+  padding: 12px;
+  text-align: center;
+  font-weight: 600;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  font-size: 0.9rem;
+}
+
+.dinner-table .week-header {
+  background: var(--background);
+  width: 80px;
+  text-align: center;
+}
+
+.dinner-table .day-header {
+  width: calc((100% - 80px) / 5);
+  background: var(--primary-color);
+  color: white;
+  text-align: center;
+  display: table-cell;
+}
+
+.week-label {
+  padding: 16px 12px;
+  text-align: center;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  min-width: 80px;
+}
+
+.week-label.current-week-label {
+  background: var(--primary-color);
+  color: white;
+  font-weight: 700;
+}
+
+.dinner-cell {
+  padding: 0;
+  border: 1px solid var(--border-color);
+  min-height: 60px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dinner-cell:hover {
+  background: #f5f5f5;
+}
+
+.current-week-row {
+  background: #e8f4fd;
+}
+
+.current-week-row .dinner-cell {
+  background: #e8f4fd;
+}
+
+.current-week-row .dinner-cell:hover {
+  background: #d0e8fb;
+}
+
+.current-week-cell {
+  border: 2px solid var(--primary-color) !important;
+}
+
+.dinner-content {
+  padding: 12px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.dinner-content .placeholder {
+  color: var(--text-secondary);
+  font-style: italic;
+  font-size: 0.85rem;
+}
+
+.dinner-input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--primary-color);
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: var(--text-primary);
+  background: white;
+  outline: none;
+  min-height: 60px;
+  text-align: center;
+}
+
+.dinner-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+/* Kids dinner section borders */
+.kid-section-first .dinner-cell {
+  border-top: 3px solid var(--border-color);
+}
+
+.kid-section-last .dinner-cell {
+  border-bottom: 3px solid var(--border-color);
+}
+
+.kid-section-first .week-label {
+  border-top: 3px solid var(--border-color);
+}
+
+.kid-section-last .week-label {
+  border-bottom: 3px solid var(--border-color);
+}
+
+.loading {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-secondary);
+}
+
