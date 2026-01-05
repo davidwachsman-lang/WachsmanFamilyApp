@@ -1,6 +1,5 @@
 import { useState, useEffect, useMemo } from 'react'
-import { getWeekEvents, getMonthEvents } from '../../services/googleCalendar'
-import { initGoogleAuth, requestToken, signOut, isAuthenticated, ensureValidToken } from '../../services/googleAuth'
+import { getWeekEvents, getMonthEvents } from '../../services/calendarApi'
 import CalendarEvent from './CalendarEvent'
 import './CalendarView.css'
 
@@ -9,83 +8,13 @@ const CalendarView = () => {
   const [loading, setLoading] = useState(true)
   const [viewMode, setViewMode] = useState('week') // 'week' or 'month'
   const [error, setError] = useState(null)
-  const [authenticated, setAuthenticated] = useState(false)
-  const [authLoading, setAuthLoading] = useState(true)
 
-  // Initialize Google Auth on mount
+  // Load events when view mode changes
   useEffect(() => {
-    const initializeAuth = async () => {
-      try {
-        // Wait for Google Identity Services to load
-        const checkGoogle = setInterval(() => {
-          if (window.google) {
-            clearInterval(checkGoogle)
-            initGoogleAuth()
-              .then(() => {
-                setAuthenticated(isAuthenticated())
-                setAuthLoading(false)
-              })
-              .catch((err) => {
-                console.error('Auth initialization error:', err)
-                setError('Failed to initialize Google authentication. Please refresh the page.')
-                setAuthLoading(false)
-              })
-          }
-        }, 100)
-
-        // Timeout after 10 seconds
-        setTimeout(() => {
-          clearInterval(checkGoogle)
-          if (!window.google) {
-            setError('Google Identity Services failed to load. Please check your internet connection and refresh.')
-            setAuthLoading(false)
-          }
-        }, 10000)
-      } catch (err) {
-        console.error('Error initializing auth:', err)
-        setAuthLoading(false)
-      }
-    }
-
-    initializeAuth()
-  }, [])
-
-  // Load events when authenticated or view mode changes
-  useEffect(() => {
-    if (authenticated && !authLoading) {
-      loadEvents()
-    }
-  }, [viewMode, authenticated, authLoading])
-
-  const handleSignIn = async () => {
-    setError(null)
-    setAuthLoading(true)
-    try {
-      // Force prompt for sign in
-      await requestToken(true)
-      setAuthenticated(true)
-      await loadEvents()
-    } catch (err) {
-      const errorMessage = err.message || 'Failed to sign in. Please try again.'
-      setError(errorMessage)
-      setAuthenticated(false)
-    } finally {
-      setAuthLoading(false)
-    }
-  }
-
-  const handleSignOut = () => {
-    signOut()
-    setAuthenticated(false)
-    setEvents([])
-    setError(null)
-  }
+    loadEvents()
+  }, [viewMode])
 
   const loadEvents = async () => {
-    if (!authenticated) {
-      return
-    }
-
     setLoading(true)
     setError(null)
     try {
@@ -98,29 +27,13 @@ const CalendarView = () => {
       }
     } catch (err) {
       const errorMessage = err.message || 'Failed to load calendar events.'
-      
-      // If auth error, try to refresh token automatically
-      if (errorMessage.includes('sign in') || errorMessage.includes('Authentication') || errorMessage.includes('expired')) {
-        try {
-          console.log('Auth error detected, attempting to refresh token...')
-          await ensureValidToken()
-          // Token refreshed, try loading events again
-          setAuthenticated(true)
-          setError(null)
-          const data = viewMode === 'week' ? await getWeekEvents() : await getMonthEvents()
-          setEvents(data)
-          return // Successfully loaded after refresh
-        } catch (refreshError) {
-          // Refresh failed, user needs to sign in again
-          console.log('Token refresh failed:', refreshError)
-          setAuthenticated(false)
-          setError('Session expired. Please sign in again.')
-        }
-      } else {
-        setError(errorMessage)
-      }
-      
+      setError(errorMessage)
       console.error('Calendar error:', err)
+      
+      // Show helpful message if backend is not configured
+      if (errorMessage.includes('No stored refresh token') || errorMessage.includes('re-authorize')) {
+        setError(`${errorMessage} Please complete the admin setup first.`)
+      }
     } finally {
       setLoading(false)
     }
@@ -294,37 +207,6 @@ const CalendarView = () => {
     }
   }
 
-  // Show loading while auth initializes
-  if (authLoading) {
-    return (
-      <div className="calendar-view">
-        <div className="calendar-header">
-          <h2>Family Calendar</h2>
-        </div>
-        <div className="loading">Initializing...</div>
-      </div>
-    )
-  }
-
-  // Show sign-in prompt if not authenticated
-  if (!authenticated) {
-    return (
-      <div className="calendar-view">
-        <div className="calendar-header">
-          <h2>Family Calendar</h2>
-        </div>
-        <div className="auth-prompt">
-          <p>Sign in with Google to view your calendar events</p>
-          <button onClick={handleSignIn} className="sign-in-btn" disabled={authLoading}>
-            {authLoading ? 'Signing in...' : 'Sign in with Google'}
-          </button>
-          {error && (
-            <div className="error-message" style={{ marginTop: '16px' }}>{error}</div>
-          )}
-        </div>
-      </div>
-    )
-  }
 
   return (
     <div className="calendar-view">
@@ -345,9 +227,6 @@ const CalendarView = () => {
           </button>
           <button onClick={loadEvents} className="refresh-btn">
             ↻ Refresh
-          </button>
-          <button onClick={handleSignOut} className="sign-out-btn">
-            Sign Out
           </button>
         </div>
       </div>

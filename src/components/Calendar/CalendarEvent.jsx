@@ -1,6 +1,9 @@
+import { useState } from 'react'
 import './CalendarEvent.css'
 
 const CalendarEvent = ({ event, compact = false }) => {
+  const [showTooltip, setShowTooltip] = useState(false)
+
   const formatTime = (dateTime) => {
     if (!dateTime) return ''
     const date = new Date(dateTime)
@@ -23,13 +26,31 @@ const CalendarEvent = ({ event, compact = false }) => {
   const startTime = event.start?.dateTime || event.start?.date
   const endTime = event.end?.dateTime || event.end?.date
 
+  // Check if event has additional details
+  const hasDetails = event.description || event.location
+
   if (compact) {
     return (
-      <div className={`calendar-event compact`}>
+      <div 
+        className={`calendar-event compact ${hasDetails ? 'has-details' : ''} ${showTooltip ? 'expanded' : ''}`}
+        onMouseEnter={() => hasDetails && setShowTooltip(true)}
+        onMouseLeave={() => setShowTooltip(false)}
+        onClick={() => hasDetails && setShowTooltip(!showTooltip)}
+      >
         <div className="event-title">{event.summary || '(No Title)'}</div>
         {event.start?.dateTime && (
           <div className="event-time">
             {formatTime(startTime)}
+          </div>
+        )}
+        {hasDetails && showTooltip && (
+          <div className="event-details">
+            {event.description && (
+              <div className="event-description-compact">{event.description}</div>
+            )}
+            {event.location && (
+              <div className="event-location-compact">📍 {event.location}</div>
+            )}
           </div>
         )}
       </div>

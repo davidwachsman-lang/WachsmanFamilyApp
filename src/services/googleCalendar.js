@@ -63,6 +63,15 @@ export const fetchCalendarEvents = async (timeMin, timeMax) => {
     console.log(`✅ Found ${events.length} events`)
     if (events.length > 0) {
       console.log('Sample event:', events[0])
+      // Log event fields to verify what's being returned
+      const sampleEvent = events[0]
+      console.log('Event fields:', {
+        summary: sampleEvent.summary,
+        description: sampleEvent.description ? 'Present' : 'Missing',
+        location: sampleEvent.location ? 'Present' : 'Missing',
+        start: sampleEvent.start,
+        end: sampleEvent.end
+      })
     }
     return events
   } catch (error) {

@@ -216,6 +216,12 @@
 .calendar-event-wrapper {
   pointer-events: auto;
   padding: 2px 4px;
+  overflow: visible;
+  z-index: 1;
+}
+
+.calendar-event-wrapper:hover {
+  z-index: 10;
 }
 
 /* Legacy styles for month view */

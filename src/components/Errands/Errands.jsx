@@ -34,7 +34,14 @@ const Errands = () => {
         .select('*')
         .order('created_at', { ascending: false })
       
-      if (error) throw error
+      if (error) {
+        console.error('Error loading errands:', error)
+        // Check if table doesn't exist
+        if (error.message && error.message.includes('does not exist')) {
+          console.error('❌ The "errands" table does not exist in Supabase. Please run the SQL setup script.')
+        }
+        throw error
+      }
       setErrands(data || [])
     } catch (error) {
       console.error('Error loading errands:', error)
@@ -62,7 +69,17 @@ const Errands = () => {
       loadErrands()
     } catch (error) {
       console.error('Error adding errand:', error)
-      alert('Failed to add errand. Please try again.')
+      const errorMessage = error.message || 'Failed to add errand. Please try again.'
+      alert(`Error: ${errorMessage}. Check the browser console for details.`)
+      // Log full error details for debugging
+      if (error.message) {
+        console.error('Full error details:', {
+          message: error.message,
+          details: error.details,
+          hint: error.hint,
+          code: error.code
+        })
+      }
     } finally {
       setIsSubmitting(false)
     }
@@ -99,7 +116,7 @@ const Errands = () => {
   return (
     <div className="errands">
       <div className="errands-header">
-        <h2>Errands / Ad-Hoc Requests</h2>
+        <h2>One-Off Errands</h2>
       </div>
 
       <form onSubmit={handleAddErrand} className="add-errand-form">
