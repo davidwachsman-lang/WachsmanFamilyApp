@@ -130,3 +130,4 @@ For a **family calendar app** shared with family members:
   - For family/personal use, verification may not be strictly required
   - Consider staying in Testing mode if verification is too complex
 
+

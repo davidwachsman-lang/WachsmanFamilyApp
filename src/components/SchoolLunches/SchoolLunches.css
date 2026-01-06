@@ -1,0 +1,126 @@
+.school-lunches {
+  background: var(--surface);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+
+.school-lunches-header {
+  margin-bottom: 16px;
+}
+
+.school-lunches-header h2 {
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.school-lunches-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin: 4px 0 0 0;
+  font-style: italic;
+}
+
+.lunches-table-container {
+  overflow-x: auto;
+  display: block;
+  width: 100%;
+}
+
+.lunches-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  table-layout: fixed;
+  display: table;
+}
+
+.lunches-table thead {
+  background: var(--background);
+  display: table-header-group;
+}
+
+.lunches-table tbody {
+  display: table-row-group;
+}
+
+.lunches-table tr {
+  display: table-row;
+}
+
+.lunches-table th {
+  padding: 12px 8px;
+  text-align: center;
+  font-weight: 600;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  font-size: 0.9rem;
+  display: table-cell;
+}
+
+.lunches-table td {
+  display: table-cell;
+}
+
+.kid-header {
+  background: var(--background);
+  width: 60px;
+  text-align: center;
+}
+
+.day-header {
+  background: var(--primary-color);
+  color: white;
+  text-align: center;
+  width: calc((100% - 60px) / 5);
+}
+
+.kid-label {
+  padding: 12px;
+  text-align: center;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  min-width: 60px;
+}
+
+.lunch-cell {
+  padding: 0;
+  border: 1px solid var(--border-color);
+  text-align: center;
+  height: 50px;
+  vertical-align: middle;
+}
+
+.lunch-checkbox-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  cursor: pointer;
+  margin: 0;
+  padding: 8px;
+}
+
+.lunch-checkbox {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  accent-color: var(--primary-color);
+}
+
+.lunch-checkbox:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: var(--text-secondary);
+}
+

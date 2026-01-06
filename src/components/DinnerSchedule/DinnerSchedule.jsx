@@ -43,6 +43,12 @@ const DinnerSchedule = () => {
     return ['Protein/main', 'Fruit/Veggie', 'Starch/Side']
   }
 
+  // Links for parent dinners
+  const parentDinnerLinks = {
+    'Salmon Sushi Bowls': 'https://eatwithclarity.com/honey-sriracha-salmon-bowls/',
+    // Add more links here as needed
+  }
+
   // Hardcoded parent dinner schedule
   const [parentDinners, setParentDinners] = useState({
     'Week A_Monday': 'Salmon Sushi Bowls',
@@ -231,7 +237,23 @@ const DinnerSchedule = () => {
                           />
                         ) : (
                           <div className="dinner-content">
-                            {value || <span className="placeholder">Click to add</span>}
+                            {value ? (
+                              parentDinnerLinks[value] ? (
+                                <a 
+                                  href={parentDinnerLinks[value]} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer"
+                                  className="dinner-link"
+                                  onClick={(e) => e.stopPropagation()}
+                                >
+                                  {value}
+                                </a>
+                              ) : (
+                                value
+                              )
+                            ) : (
+                              <span className="placeholder">Click to add</span>
+                            )}
                           </div>
                         )}
                       </td>

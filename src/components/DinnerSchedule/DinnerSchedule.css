@@ -37,6 +37,8 @@
 
 .dinner-table-container {
   overflow-x: auto;
+  display: block;
+  width: 100%;
 }
 
 .dinner-table {
@@ -44,10 +46,20 @@
   border-collapse: collapse;
   background: var(--surface);
   table-layout: fixed;
+  display: table;
 }
 
 .dinner-table thead {
   background: var(--background);
+  display: table-header-group;
+}
+
+.dinner-table tbody {
+  display: table-row-group;
+}
+
+.dinner-table tr {
+  display: table-row;
 }
 
 .dinner-table th {
@@ -57,6 +69,11 @@
   color: var(--text-primary);
   border: 1px solid var(--border-color);
   font-size: 0.9rem;
+  display: table-cell;
+}
+
+.dinner-table td {
+  display: table-cell;
 }
 
 .dinner-table .week-header {
@@ -137,6 +154,16 @@
   color: var(--text-secondary);
   font-style: italic;
   font-size: 0.85rem;
+}
+
+.dinner-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: text-decoration 0.2s;
+}
+
+.dinner-link:hover {
+  text-decoration: underline;
 }
 
 .dinner-input {

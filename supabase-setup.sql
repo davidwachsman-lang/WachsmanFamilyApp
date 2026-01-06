@@ -52,11 +52,25 @@ CREATE TABLE IF NOT EXISTS errands (
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
+-- Create school_lunches table
+CREATE TABLE IF NOT EXISTS school_lunches (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  week_start DATE NOT NULL,
+  kid TEXT NOT NULL CHECK (kid IN ('Char', 'Leo', 'Sadie')),
+  day TEXT NOT NULL CHECK (day IN ('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday')),
+  packed BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  UNIQUE(week_start, kid, day)
+);
+
 -- Create indexes for better query performance
 CREATE INDEX IF NOT EXISTS idx_todos_week_start ON todos(week_start);
 CREATE INDEX IF NOT EXISTS idx_notes_week_start ON notes(week_start);
 CREATE INDEX IF NOT EXISTS idx_chores_completed ON chores(completed);
 CREATE INDEX IF NOT EXISTS idx_dinner_schedule_week_day ON dinner_schedule(week, day);
+CREATE INDEX IF NOT EXISTS idx_school_lunches_week_start ON school_lunches(week_start);
+CREATE INDEX IF NOT EXISTS idx_school_lunches_week_kid_day ON school_lunches(week_start, kid, day);
 
 -- Enable Row Level Security (RLS) but allow all operations since we're not using auth
 ALTER TABLE chores ENABLE ROW LEVEL SECURITY;
@@ -64,6 +78,7 @@ ALTER TABLE todos ENABLE ROW LEVEL SECURITY;
 ALTER TABLE notes ENABLE ROW LEVEL SECURITY;
 ALTER TABLE dinner_schedule ENABLE ROW LEVEL SECURITY;
 ALTER TABLE errands ENABLE ROW LEVEL SECURITY;
+ALTER TABLE school_lunches ENABLE ROW LEVEL SECURITY;
 
 -- Create policies to allow all operations (since no auth)
 CREATE POLICY "Allow all operations on chores" ON chores
@@ -79,5 +94,8 @@ CREATE POLICY "Allow all operations on dinner_schedule" ON dinner_schedule
   FOR ALL USING (true) WITH CHECK (true);
 
 CREATE POLICY "Allow all operations on errands" ON errands
+  FOR ALL USING (true) WITH CHECK (true);
+
+CREATE POLICY "Allow all operations on school_lunches" ON school_lunches
   FOR ALL USING (true) WITH CHECK (true);
 

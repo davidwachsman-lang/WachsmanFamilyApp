@@ -99,3 +99,4 @@ supabase --version
 - **Have Node.js**: Option 2 (quick)
 - **No package manager**: Option 3 (manual but reliable)
 
+

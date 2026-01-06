@@ -163,3 +163,4 @@ For this React/Vite app, **Vercel is the easiest and best option** because:
 - Easy environment variable management
 - Preview deployments for pull requests
 
+

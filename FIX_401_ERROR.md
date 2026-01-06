@@ -50,3 +50,4 @@ https://hclsegvuijvhlioibnux.supabase.co/functions/v1/auth-callback?code=test&st
 
 If you still get 401, the dashboard configuration is the only solution.
 
+

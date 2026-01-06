@@ -31,3 +31,4 @@ If the file exists but still doesn't work, try:
 If neither option works, Supabase might have updated their Edge Functions API. Check the latest docs:
 https://supabase.com/docs/guides/functions
 
+

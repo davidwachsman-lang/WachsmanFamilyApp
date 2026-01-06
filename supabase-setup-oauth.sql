@@ -24,3 +24,4 @@ CREATE POLICY "Service role can manage tokens" ON google_calendar_tokens
 -- Note: Service role bypasses RLS, so this table is only accessible
 -- from Edge Functions using the service role key
 
+

@@ -1,6 +1,7 @@
 import CalendarView from './components/Calendar/CalendarView'
 import DinnerSchedule from './components/DinnerSchedule/DinnerSchedule'
 import WeeklyTodos from './components/WeeklyTodos/WeeklyTodos'
+import SchoolLunches from './components/SchoolLunches/SchoolLunches'
 import Errands from './components/Errands/Errands'
 import './App.css'
 
@@ -19,6 +20,7 @@ function App() {
           </div>
           <div className="right-column">
             <WeeklyTodos />
+            <SchoolLunches />
             <Errands />
           </div>
         </div>
