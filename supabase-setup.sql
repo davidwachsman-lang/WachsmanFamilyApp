@@ -98,4 +98,3 @@ CREATE POLICY "Allow all operations on errands" ON errands
 
 CREATE POLICY "Allow all operations on school_lunches" ON school_lunches
   FOR ALL USING (true) WITH CHECK (true);
-

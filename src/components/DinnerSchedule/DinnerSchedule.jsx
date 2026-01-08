@@ -46,7 +46,24 @@ const DinnerSchedule = () => {
   // Links for parent dinners
   const parentDinnerLinks = {
     'Salmon Sushi Bowls': 'https://eatwithclarity.com/honey-sriracha-salmon-bowls/',
+    'Buffalo Chicken Tacos': 'https://onebalancedlife.com/buffalo-chicken-baked-tacos/',
+    'Egg Roll in a Bowl': 'https://www.halfbakedharvest.com/peanut-chicken-spring-roll-bowls/',
+    'White Bean Chili': 'https://www.halfbakedharvest.com/creamy-white-chicken-chili/',
     // Add more links here as needed
+  }
+
+  // Recipes with directions (no external link)
+  const parentDinnerDirections = {
+    'Malibu Halibut': `Halibut (4 filets): marinate: zest from 2 lemons on top; juice from same lemons and olive oil on top/around. Right before oven: good amount of Maldon + dill + cracked pepper on top. Bake @ 400; check after 20 min.`,
+    'Soy Vey Chicken': `Cover chicken in soy vey, 1/4 cup of lime juice; cook 2-4 hours on high`,
+    'Taco Night': `Bake 3 chicken breasts - olive oil, salt, and pepper
+Each in a bowl:
+- Shredded Lettuce
+- Can of Beans
+- Can of Corn
+- Shredded Cheese
+- Avocadoes
+Mission Low Carb Tortillas`
   }
 
   // Hardcoded parent dinner schedule
@@ -78,6 +95,7 @@ const DinnerSchedule = () => {
     'Char_Protein/main_Thursday': 'Chicken Sandwich (cutlet from freezer + bun)',
     'Char_Fruit/Side_Thursday': 'Grapes',
     'Char_Starch/Side_Thursday': 'Baked Lays',
+    'Char_Protein/main_Friday': 'Eat with Family',
     
     // Leo
     'Leo_Protein/main_Monday': 'Protein waffles: PB + sprinkles',
@@ -92,6 +110,7 @@ const DinnerSchedule = () => {
     'Leo_Protein/main_Thursday': 'Turkey Burger',
     'Leo_Fruit/Veggie_Thursday': 'Freeze Dried Strawberries',
     'Leo_Starch/Side_Thursday': 'White Rice',
+    'Leo_Protein/main_Friday': 'Eat with Family',
     
     // Sadie
     'Sadie_Protein/main_Monday': 'Sushi - salmon (small piece)',
@@ -106,11 +125,14 @@ const DinnerSchedule = () => {
     'Sadie_Protein/main_Thursday': 'Burger',
     'Sadie_Fruit/Veggie_Thursday': 'Potato Chips',
     'Sadie_Starch/Side_Thursday': '',
+    'Sadie_Protein/main_Friday': 'Eat with Family',
   })
 
   const [editingCell, setEditingCell] = useState(null)
   const [editValue, setEditValue] = useState('')
   const [editingTable, setEditingTable] = useState(null) // 'parents' or 'kids'
+  const [showDirectionsModal, setShowDirectionsModal] = useState(false)
+  const [directionsRecipe, setDirectionsRecipe] = useState(null)
 
   const getCellKey = (identifier, day) => {
     return `${identifier}_${day}`
@@ -248,6 +270,17 @@ const DinnerSchedule = () => {
                                 >
                                   {value}
                                 </a>
+                              ) : parentDinnerDirections[value] ? (
+                                <button
+                                  className="dinner-link-button"
+                                  onClick={(e) => {
+                                    e.stopPropagation()
+                                    setDirectionsRecipe(value)
+                                    setShowDirectionsModal(true)
+                                  }}
+                                >
+                                  {value}
+                                </button>
                               ) : (
                                 value
                               )
@@ -339,6 +372,27 @@ const DinnerSchedule = () => {
           </table>
         </div>
       </div>
+
+      {/* Directions Modal */}
+      {showDirectionsModal && directionsRecipe && (
+        <div className="directions-modal-overlay" onClick={() => setShowDirectionsModal(false)}>
+          <div className="directions-modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="directions-modal-header">
+              <h3>{directionsRecipe}</h3>
+              <button 
+                className="directions-modal-close"
+                onClick={() => setShowDirectionsModal(false)}
+                aria-label="Close"
+              >
+                ×
+              </button>
+            </div>
+            <div className="directions-modal-body">
+              <p className="directions-text">{parentDinnerDirections[directionsRecipe]}</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

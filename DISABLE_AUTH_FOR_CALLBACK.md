@@ -32,3 +32,4 @@ If neither option works, Supabase might have updated their Edge Functions API. C
 https://supabase.com/docs/guides/functions
 
 
+

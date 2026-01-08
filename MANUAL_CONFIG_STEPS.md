@@ -51,3 +51,4 @@ If the dashboard doesn't show JWT verification settings, try:
 **Next Step:** Configure in dashboard or contact Supabase support.
 
 
+

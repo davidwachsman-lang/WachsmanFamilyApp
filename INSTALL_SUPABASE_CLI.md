@@ -100,3 +100,4 @@ supabase --version
 - **No package manager**: Option 3 (manual but reliable)
 
 
+

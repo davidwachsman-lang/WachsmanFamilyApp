@@ -41,3 +41,4 @@ If settings still don't work, try:
 2. Redeploy: `supabase functions deploy auth-callback`
 
 
+
