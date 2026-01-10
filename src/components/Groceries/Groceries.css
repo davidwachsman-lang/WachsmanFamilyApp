@@ -1,0 +1,130 @@
+.groceries {
+  background: var(--surface);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+
+.groceries-header {
+  margin-bottom: 16px;
+}
+
+.groceries-header h2 {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.add-grocery-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.grocery-input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--text-primary);
+}
+
+.grocery-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.add-grocery-btn {
+  padding: 10px 20px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.add-grocery-btn:hover:not(:disabled) {
+  background: #357abd;
+}
+
+.add-grocery-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.groceries-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.grocery-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  background: var(--background);
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+.grocery-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  cursor: pointer;
+}
+
+.grocery-checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--primary-color);
+}
+
+.grocery-text {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.grocery-text.completed {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+.delete-grocery-btn {
+  background: none;
+  border: none;
+  color: var(--danger-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.delete-grocery-btn:hover {
+  background: #fee;
+}
+
+.loading,
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-secondary);
+  font-style: italic;
+}

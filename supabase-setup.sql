@@ -52,6 +52,14 @@ CREATE TABLE IF NOT EXISTS errands (
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
+-- Create groceries table
+CREATE TABLE IF NOT EXISTS groceries (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  title TEXT NOT NULL,
+  completed BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
 -- Create school_lunches table
 CREATE TABLE IF NOT EXISTS school_lunches (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
@@ -78,23 +86,35 @@ ALTER TABLE todos ENABLE ROW LEVEL SECURITY;
 ALTER TABLE notes ENABLE ROW LEVEL SECURITY;
 ALTER TABLE dinner_schedule ENABLE ROW LEVEL SECURITY;
 ALTER TABLE errands ENABLE ROW LEVEL SECURITY;
+ALTER TABLE groceries ENABLE ROW LEVEL SECURITY;
 ALTER TABLE school_lunches ENABLE ROW LEVEL SECURITY;
 
 -- Create policies to allow all operations (since no auth)
+-- Drop existing policies first to make script idempotent
+DROP POLICY IF EXISTS "Allow all operations on chores" ON chores;
 CREATE POLICY "Allow all operations on chores" ON chores
   FOR ALL USING (true) WITH CHECK (true);
 
+DROP POLICY IF EXISTS "Allow all operations on todos" ON todos;
 CREATE POLICY "Allow all operations on todos" ON todos
   FOR ALL USING (true) WITH CHECK (true);
 
+DROP POLICY IF EXISTS "Allow all operations on notes" ON notes;
 CREATE POLICY "Allow all operations on notes" ON notes
   FOR ALL USING (true) WITH CHECK (true);
 
+DROP POLICY IF EXISTS "Allow all operations on dinner_schedule" ON dinner_schedule;
 CREATE POLICY "Allow all operations on dinner_schedule" ON dinner_schedule
   FOR ALL USING (true) WITH CHECK (true);
 
+DROP POLICY IF EXISTS "Allow all operations on errands" ON errands;
 CREATE POLICY "Allow all operations on errands" ON errands
   FOR ALL USING (true) WITH CHECK (true);
 
+DROP POLICY IF EXISTS "Allow all operations on groceries" ON groceries;
+CREATE POLICY "Allow all operations on groceries" ON groceries
+  FOR ALL USING (true) WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Allow all operations on school_lunches" ON school_lunches;
 CREATE POLICY "Allow all operations on school_lunches" ON school_lunches
   FOR ALL USING (true) WITH CHECK (true);

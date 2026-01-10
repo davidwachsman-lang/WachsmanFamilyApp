@@ -3,6 +3,7 @@ import DinnerSchedule from './components/DinnerSchedule/DinnerSchedule'
 import WeeklyTodos from './components/WeeklyTodos/WeeklyTodos'
 import SchoolLunches from './components/SchoolLunches/SchoolLunches'
 import Errands from './components/Errands/Errands'
+import Groceries from './components/Groceries/Groceries'
 import './App.css'
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
             <WeeklyTodos />
             <SchoolLunches />
             <Errands />
+            <Groceries />
           </div>
         </div>
       </main>

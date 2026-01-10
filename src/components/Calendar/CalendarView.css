@@ -334,9 +334,7 @@
   font-size: 0.9rem;
   font-weight: 500;
   transition: all 0.2s;
-}
-
-.sign-out-btn:hover {
+}.sign-out-btn:hover {
   border-color: var(--danger-color);
   background: #fee;
   color: var(--danger-color);
