@@ -322,9 +322,7 @@
 .sign-in-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-}
-
-.sign-out-btn {
+}.sign-out-btn {
   padding: 8px 16px;
   border: 2px solid var(--border-color);
   background: var(--surface);

@@ -101,9 +101,7 @@
   margin-top: 6px;
   padding-top: 6px;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.event-description-compact {
+}.event-description-compact {
   font-size: 0.75rem;
   color: var(--text-primary);
   line-height: 1.4;
