@@ -181,25 +181,15 @@ serve(async (req) => {
         <body>
           <div class="container">
             <h1>✅ Authorization Successful!</h1>
-            <p>Your Google Calendar access has been configured. The refresh token has been stored securely.</p>
-            
-            <div class="warning">
-              <strong>⚠️ Important:</strong> Copy your refresh token below and save it in your environment variables as <code>GOOGLE_REFRESH_TOKEN</code>
-            </div>
-
-            <h3>Refresh Token:</h3>
-            <div class="token-box" id="refreshToken">${tokenData.refresh_token || 'No refresh token received (may need to revoke and re-authorize)'}</div>
-            
-            <button onclick="copyToken()">Copy Refresh Token</button>
+            <p>Your Google Calendar access has been configured. The tokens have been stored securely in the database.</p>
             
             <p style="margin-top: 30px;">
-              <strong>Next steps:</strong>
+              <strong>You're all set!</strong> The calendar events API should now work. You can close this page and return to your app.
             </p>
-            <ol>
-              <li>Copy the refresh token above</li>
-              <li>Add it to your environment variables (Vercel, Supabase, or .env file)</li>
-              <li>The calendar events API should now work for all users!</li>
-            </ol>
+            
+            <p style="margin-top: 20px; color: #666;">
+              <small>Tokens are automatically stored in the database - no manual configuration needed.</small>
+            </p>
           </div>
 
           <script>

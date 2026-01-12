@@ -317,9 +317,7 @@
 
 .sign-in-btn:hover:not(:disabled) {
   background: #357abd;
-}
-
-.sign-in-btn:disabled {
+}.sign-in-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }.sign-out-btn {

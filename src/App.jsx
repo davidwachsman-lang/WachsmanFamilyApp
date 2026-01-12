@@ -4,7 +4,6 @@ import WeeklyTodos from './components/WeeklyTodos/WeeklyTodos'
 import SchoolLunches from './components/SchoolLunches/SchoolLunches'
 import Errands from './components/Errands/Errands'
 import Groceries from './components/Groceries/Groceries'
-import AdminAuth from './components/AdminAuth/AdminAuth'
 import './App.css'
 
 function App() {
@@ -15,7 +14,6 @@ function App() {
       </header>
       
       <main className="app-main">
-        <AdminAuth />
         <div className="app-content">
           <div className="left-column">
             <CalendarView />
