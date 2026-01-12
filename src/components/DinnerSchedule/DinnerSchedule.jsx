@@ -73,9 +73,9 @@ Mission Low Carb Tortillas`
     'Week A_Wednesday': 'Egg Roll in a Bowl',
     'Week A_Thursday': 'Leftovers',
     'Week A_Friday': 'Breakfast for Dinner',
-    'Week B_Monday': 'Soy Vey Chicken',
-    'Week B_Tuesday': 'White Bean Chili',
-    'Week B_Wednesday': 'Malibu Halibut',
+    'Week B_Monday': 'Salmon Sushi Bowls',
+    'Week B_Tuesday': 'Malibu Halibut',
+    'Week B_Wednesday': 'White Bean Chili',
     'Week B_Thursday': 'Leftovers',
     'Week B_Friday': 'Taco Night',
   })
