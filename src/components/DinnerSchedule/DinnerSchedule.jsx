@@ -69,12 +69,12 @@ Mission Low Carb Tortillas`
   // Hardcoded parent dinner schedule
   const [parentDinners, setParentDinners] = useState({
     'Week A_Monday': 'Salmon Sushi Bowls',
-    'Week A_Tuesday': 'Buffalo Chicken Tacos',
-    'Week A_Wednesday': 'Egg Roll in a Bowl',
+    'Week A_Tuesday': 'Adults Out',
+    'Week A_Wednesday': 'Buffalo Chicken Tacos',
     'Week A_Thursday': 'Leftovers',
     'Week A_Friday': 'Breakfast for Dinner',
     'Week B_Monday': 'Salmon Sushi Bowls',
-    'Week B_Tuesday': 'Malibu Halibut',
+    'Week B_Tuesday': 'Egg Roll in a Bowl',
     'Week B_Wednesday': 'White Bean Chili',
     'Week B_Thursday': 'Leftovers',
     'Week B_Friday': 'Taco Night',
