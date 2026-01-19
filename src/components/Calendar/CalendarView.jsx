@@ -31,8 +31,10 @@ const CalendarView = () => {
       console.error('Calendar error:', err)
       
       // Show helpful message if backend is not configured
-      if (errorMessage.includes('No stored refresh token') || errorMessage.includes('re-authorize')) {
-        setError(`${errorMessage} Please complete the admin setup first.`)
+      if (errorMessage.includes('No stored refresh token') || errorMessage.includes('re-authorize') || errorMessage.includes('expired') || errorMessage.includes('revoked')) {
+        setError(`${errorMessage} Click "Re-Authorize Calendar" in the header to fix this.`)
+        // Dispatch event to show admin auth
+        window.dispatchEvent(new CustomEvent('calendar-auth-error', { detail: errorMessage }))
       }
     } finally {
       setLoading(false)

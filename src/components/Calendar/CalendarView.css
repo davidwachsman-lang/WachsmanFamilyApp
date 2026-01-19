@@ -313,9 +313,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s;
-}
-
-.sign-in-btn:hover:not(:disabled) {
+}.sign-in-btn:hover:not(:disabled) {
   background: #357abd;
 }.sign-in-btn:disabled {
   opacity: 0.6;

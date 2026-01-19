@@ -9,13 +9,22 @@ const WeeklyTodos = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const currentWeekStart = getWeekStart(new Date())
 
-  // Helper function to get the start of the week (Sunday)
+  // Helper function to get the start of the week (Monday)
+  // If it's Sunday, return next Monday (upcoming week)
+  // Otherwise, return Monday of current week
   function getWeekStart(date) {
     const d = new Date(date)
-    // Find Monday of current week
     const dayOfWeek = d.getDay()
-    const diff = dayOfWeek === 0 ? 6 : dayOfWeek - 1
-    d.setDate(d.getDate() - diff)
+    
+    if (dayOfWeek === 0) {
+      // It's Sunday - return next Monday (upcoming week)
+      d.setDate(d.getDate() + 1)
+    } else {
+      // Find Monday of current week
+      const diff = dayOfWeek - 1
+      d.setDate(d.getDate() - diff)
+    }
+    
     d.setHours(0, 0, 0, 0)
     return d.toISOString().split('T')[0]
   }
